@@ -6,18 +6,28 @@ let earRight=document.querySelector('#earRight')
 let eyeLeft=document.querySelector('#eyeLeft')
 let eyeRight=document.querySelector('#eyeRight')
 let mouthCenter=document.querySelector('#mouthCenter')
+let eyesHead=document.querySelector('#eyesHead')
+let mouthHead=document.querySelector('#mouthHead')
+let earsHead=document.querySelector('#earsHead')
 let showHide=document.querySelector('#showHide')
 showHide.style.display='none'
 
 window.onload=()=>{
     fetch('http://localhost:5000/lennyAllFaces')
-      .then(response => response.json())
-      .then(data => {
+    .then(response => response.json())
+    .then(data => {
+        eyesHead.textContent='select pair of eyes'
+        mouthHead.textContent='select mouth'
+        earsHead.textContent='select ears & arms'
         DisplayFunc(data?.Faces?.Eyes, allEyes, clkFunc)
         DisplayFunc(data?.Faces?.Mouths, allMouths, clkFunc)
         DisplayFunc(data?.Faces?.Ears, allEars, clkFunc)
-      })
-      .catch(err =>  console.error(err))
+        })
+    .catch(err => {
+        eyesHead.textContent='connect backend and reload page'
+        eyesHead.style.fontSize='50px'
+        console.error(err)
+    })
 }
 
 let clkFunc=(ele1, id, ele2)=>{

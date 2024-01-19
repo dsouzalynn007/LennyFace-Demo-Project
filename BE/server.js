@@ -2,10 +2,8 @@ import express from 'express';
 import cors from 'cors';
 const app = express();
 
-app.use(cors())
 
-// Lenny faces array
-let  LennyEyes = [
+let LennyEyes = [
   ["⌐■", "■"],
   [" ͠°", " °"],
   ["⇀", "↼"],
@@ -179,17 +177,15 @@ let LennyEars = [
   ["👉(", ")👉"],
 ];
 
-// Endpoint to get a random lenny face
+app.use(cors())
 app.get('/lennyAllFaces', (req, res) => {
-  res.json({ Faces: {
-    Eyes : LennyEyes ,
-    Mouths : LennyMouths ,
-    Ears : LennyEars ,
-  } });
-});
-
-// Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+  res.json({
+    Faces: {
+    Eyes : LennyEyes,
+    Mouths : LennyMouths,
+    Ears : LennyEars,
+    }
+  })
+}).listen(5000, ()=>{
+  console.log('Server is running on http://localhost:5000')
+})
